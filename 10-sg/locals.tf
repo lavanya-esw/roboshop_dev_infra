@@ -3,6 +3,8 @@ locals {
   sg_tags = {
     Project = var.project
     Environment = var.environment
-    Terraform = true
+    Terraform = "true"
   }
+
+  vpc_id = data.aws_ssm_parameter.vpc_id.value
 }

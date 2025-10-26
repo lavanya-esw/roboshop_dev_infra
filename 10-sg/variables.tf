@@ -6,9 +6,9 @@ variable "environment" {
     default = "dev" 
 }
 
-variable "sg_name" {
+variable "sg_names" {
     default = [
-        "mongodb"
-    ]
-  
+        "mongodb","redis","bastian"
+    ] 
 }
+

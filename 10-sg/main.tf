@@ -7,3 +7,15 @@
 #     vpc_id      = data.aws_ssm_parameter.vpc_id.value
 #     use_name_prefix = false
 # }
+
+# using customized module
+module "sg" {
+    count = length(var.sg_names)
+    source = "git::https://github.com/lavanya-esw/terraform-aws-sg.git?ref=main"
+    project = var.project
+    environment = var.environment
+    sg_name = "${var.project}-${var.environment}-${var.sg_names[count.index]}"
+    description = "created for ${var.sg_names[count.index]}"
+    vpc_id = local.vpc_id
+    sg_tags = local.sg_tags
+}
