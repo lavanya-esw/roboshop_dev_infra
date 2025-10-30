@@ -9,6 +9,7 @@ REPO_DIR="/opt/roboshop/ansible"
 ANSIBLE_DIR="roboshop_ansible_roles_tf"
 
 LOG_DIR="/var/log/roboshop"
+mkdir -p $REPO_DIR
 mkdir -p ${LOG_DIR}
 cd $LOG_DIR
 ansible.log
