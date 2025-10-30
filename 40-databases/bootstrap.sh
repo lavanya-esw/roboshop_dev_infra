@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e~
+set -e
 component=$1
 environment=$2
 dnf install ansible -y
