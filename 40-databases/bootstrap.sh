@@ -12,7 +12,6 @@ LOG_DIR="/var/log/roboshop"
 mkdir -p $REPO_DIR
 mkdir -p ${LOG_DIR}
 cd $LOG_DIR
-touch ansible.log
 
 cd $REPO_DIR
 if [ -d $ANSIBLE_DIR ]; then
