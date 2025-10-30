@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e~
 component=$1
 environment=$2
 sudo dnf install ansible -y
@@ -12,7 +12,7 @@ LOG_DIR="/var/log/roboshop"
 mkdir -p $REPO_DIR
 mkdir -p ${LOG_DIR}
 cd $LOG_DIR
-ansible.log
+touch ansible.log
 
 cd $REPO_DIR
 if [ -d $ANSIBLE_DIR ]; then
