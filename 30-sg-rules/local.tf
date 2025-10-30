@@ -1,6 +1,7 @@
 locals {
-  security_group_id = data.aws_ssm_parameter.frontend_sg-id.value
-  source_security_group_id = data.aws_ssm_parameter.frontend_alb_sg-id.value
+  # security_group_id = data.aws_ssm_parameter.frontend_sg-id.value
+  # source_security_group_id = data.aws_ssm_parameter.frontend_alb_sg-id.value
   bastion_sg_id = data.aws_ssm_parameter.bastion_sg-id.value
-  backend_security_group_id = data.aws_ssm_parameter.backend_alb_sg-id.value
+  # backend_security_group_id = data.aws_ssm_parameter.backend_alb_sg-id.value
+  mongodb_security_group_id = data.aws_ssm_parameter.mongodb_sg-id.value
 }
