@@ -2,7 +2,7 @@
 set -e~
 component=$1
 environment=$2
-sudo dnf install ansible -y
+dnf install ansible -y
 #ansible-pull -U https://github.com/lavanya-esw/roboshop_ansible_roles_tf.git -e component=$component main.yaml
 REPO_URL="https://github.com/lavanya-esw/roboshop_ansible_roles_tf.git"
 REPO_DIR="/opt/roboshop/ansible"
