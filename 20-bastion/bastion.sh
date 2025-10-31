@@ -1,8 +1,11 @@
-
 #!/bin/bash
+exec > /var/log/user-data.log 2>&1
+set -x
 
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-sudo yum -y install terraform
+echo "Starting user data script..."
 
-echo "terraform installed"
+yum install -y yum-utils
+yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+yum -y install terraform
+
+echo "Terraform installed successfully."
