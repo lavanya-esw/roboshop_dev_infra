@@ -146,33 +146,33 @@ resource "aws_iam_instance_profile" "mysql" {
   
 }
 
-# resource "terraform_data" "mysql" {
-#     triggers_replace = [
-#         aws_instance.mysql.id
-#     ]
+resource "terraform_data" "mysql" {
+    triggers_replace = [
+        aws_instance.mysql.id
+    ]
 
-#     connection {
-#       type = "ssh"
-#       user = "ec2-user"
-#       password = "DevOps321"
-#       host = aws_instance.mysql.private_ip
-#     }
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      password = "DevOps321"
+      host = aws_instance.mysql.private_ip
+    }
 
-#     provisioner "file" {
-#         source = "./bootstrap.sh"
-#         destination = "/tmp/bootstrap.sh"
+    provisioner "file" {
+        source = "./bootstrap.sh"
+        destination = "/tmp/bootstrap.sh"
       
-#     }
+    }
 
-#     provisioner "remote-exec" {
-#     inline = [
-#         "chmod +x /tmp/bootstrap.sh",
-#         "sudo sh /tmp/bootstrap.sh mysql dev",
-#         "echo 'mysql connected'"
-#       ]
+    provisioner "remote-exec" {
+    inline = [
+        "chmod +x /tmp/bootstrap.sh",
+        "sudo sh /tmp/bootstrap.sh mysql dev",
+        "echo 'mysql connected'"
+      ]
     
-#   }
-# }
+  }
+}
   
 
   
