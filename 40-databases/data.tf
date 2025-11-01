@@ -18,6 +18,10 @@ data "aws_ami" "joindevops" {
     }
 }
 
+data "aws_route53_zone" "zone_id" {
+  name = "awsdevops.fun" # Note the trailing dot for the FQDN
+}
+
 data "aws_ssm_parameter" "mongodb_sg_id" {
     name = "/${var.project}/${var.environment}/mongodb_sg_id"
 }
