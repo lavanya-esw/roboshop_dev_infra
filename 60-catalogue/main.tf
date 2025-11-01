@@ -25,8 +25,16 @@ resource "terraform_data" "catalogue" {
       host = aws_instance.catalogue.private_ip
     }
 
+    provisioner "file" { 
+      source = "./catalogue.sh"
+      destination = "/tmp/catalogue.sh"
+    }
+
     provisioner "remote-exec" {
-        inline = [ "echo 'connected to catalogue'"]
+        inline = [
+            "chmod +x /tmp/catalogue.sh",
+            "sudo sh /tmp/catalogue.sh catalogue dev",
+            "echo 'connected to catalogue'"]
       
     }
   
