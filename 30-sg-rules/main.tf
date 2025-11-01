@@ -66,3 +66,13 @@ resource "aws_security_group_rule" "mqsql_bastion" {
   to_port = 22
   
 }
+
+resource "aws_security_group_rule" "catalogue-bastion" {
+  type = "ingress"
+  security_group_id = local.catalogue_security_group_id
+  source_security_group_id = local.bastion_sg_id
+  from_port = 22
+  protocol = "tcp"
+  to_port = 22
+  
+}
