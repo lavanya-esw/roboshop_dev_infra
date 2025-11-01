@@ -1,0 +1,11 @@
+locals {
+    common_name = "${var.project}-${var.environment}"
+    common_tags ={
+        Project = var.project
+        Environment = var.environment
+        Terraform = "true"
+    }
+
+    catalogue_sg_id = data.aws_ssm_parameter.catalogue_sg_id
+    subnet_id = split("," , data.aws_ssm_parameter.private_subnet_ids)[0]
+}
