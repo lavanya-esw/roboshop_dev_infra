@@ -9,6 +9,7 @@ resource "aws_instance" "main" {
         volume_size = 50
         volume_type = "gp3" # or "gp2", depending on your preference
     }
+    iam_instance_profile = aws_iam_instance_profile.bastion.name
 
     tags = merge(
         local.common_tags,
@@ -16,6 +17,12 @@ resource "aws_instance" "main" {
             Name = "${local.common_name}-bastian"
         }
     )
+   }
+
+   resource "aws_iam_instance_profile" "bastion" {
+    name = "bastion"
+    role = "roboshop-bastion"
+     
    }
 
 
