@@ -156,3 +156,20 @@ resource "aws_autoscaling_policy" "cpu_utilization_policy" {
     target_value = 70.0 # Target average CPU utilization at 50%
   }
 }
+
+
+
+resource "aws_alb_listerner_rule" "catalogue" {
+    listener_arn = local.backend_alb_listener_arn
+    priority = 10
+
+    action {
+        type             = "forward"
+        target_group_arn = aws_lb_target_group.catalogue.arn
+    }
+    condition {
+        host_header {
+        values = ["catalogue.backend-alb-dev.awsdevops.fun"]
+        }
+    }
+}
