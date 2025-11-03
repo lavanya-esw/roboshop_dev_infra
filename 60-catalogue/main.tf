@@ -56,6 +56,103 @@ resource "aws_ami_from_instance" "catalogue" {
         {
             Name = "${local.common_name}-catalogue-ami"
         }
+    ) 
+}
+
+resource "aws_launch_template" "catalogue" {
+    name = "${var.project}-${var.environment}-catalogue"
+    image_id = aws_ami_from_instance.catalogue.id
+    instance_initiated_shutdown_behavior = "terminated"
+    instance_type = "t3.micro"
+    vpc_security_group_ids = [local.catalogue_sg_id]
+
+    tag_specifications {
+      resource_type = "instance"
+      tags = merge(
+        local.common_tags,
+        {
+            Name = "${var.project}-${var.environment}-catalogue"
+        }
+      )
+    }
+    tag_specifications {
+      resource_type = "volume"
+        tags = merge(
+            local.common_tags,
+            {
+                Name = "${var.project}-${var.environment}-catalogue"
+            }
+       )
+
+    }
+    tags = merge(
+        local.common_tags,
+        {
+            Name = "${var.project}-${var.environment}-catalogue"
+        }
+    ) 
+}
+
+resource "aws_lb_target_group" "catalogue" {
+    name = "${var.project}-${var.environment}-catalogue"
+    port = 8080
+    protocol = "HTTP"
+    vpc_id = local.vpc_id
+    deregistration_delay = 60
+    health_check {
+      interval = 10
+      path = "/health"
+      port = 8080
+      protocol = "HTTP"
+      timeout = 2
+      healthy_threshold = 2
+      unhealthy_threshold = 2
+      matcher = "200-299"
+    }
+}
+
+resource "aws_autoscaling_group" "catalogue" {
+    name = "${var.project}-${var.environment}-catalogue"
+    min_size = 1
+    max_size = 10
+    health_check_grace_period = 100
+    health_check_type = "ELB"
+    desired_capacity = 1
+    target_group_arns = [aws_lb_target_group.catalogue.arn]
+    vpc_zone_identifier = [local.subnet_ids]
+    launch_template {
+      id = aws_launch_template.catalogue.id
+      version = aws_launch_template.catalogue.latest_version
+    }
+    timeouts {
+        delete = "15m"
+    }
+    dynamic "tag" {
+    for_each = merge(
+      local.common_tags,
+      {
+        Name = "${var.project}-${var.environment}-catalogue"
+      }
     )
-  
+    content {
+      key                 = tag.key
+      value               = tag.value
+      propagate_at_launch = true
+    }
+  }
+}  
+
+
+
+resource "aws_autoscaling_policy" "cpu_utilization_policy" {
+  name                   = "${var.project}-${var.environment}-catalogue"
+  autoscaling_group_name = aws_autoscaling_group.catalogue.name
+  policy_type            = "TargetTrackingScaling"
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 70.0 # Target average CPU utilization at 50%
+  }
 }
