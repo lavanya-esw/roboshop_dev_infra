@@ -159,7 +159,7 @@ resource "aws_autoscaling_policy" "cpu_utilization_policy" {
 
 
 
-resource "aws_alb_listerner_rule" "catalogue" {
+resource "aws_alb_listener_rule" "catalogue" {
     listener_arn = local.backend_alb_listener_arn
     priority = 10
 
