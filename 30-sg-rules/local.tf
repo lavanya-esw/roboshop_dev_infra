@@ -8,5 +8,6 @@ locals {
   rabbitmq_security_group_id = data.aws_ssm_parameter.rabbitmq_sg-id.value
   mysql_security_group_id = data.aws_ssm_parameter.mysql_sg-id.value
   catalogue_security_group_id = data.aws_ssm_parameter.catalogue_sg-id.value
+  backend_alb_security_group_id = data.aws_ssm_parameter.backend-alb_sg-id.value
 
 }

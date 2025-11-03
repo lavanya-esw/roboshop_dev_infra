@@ -86,3 +86,13 @@ resource "aws_security_group_rule" "mongodb-catalogue" {
   to_port = 27017
   
 }
+
+resource "aws_security_group_rule" "catalogue-backend_alb" {
+  type = "ingress"
+  security_group_id = local.catalogue_security_group_id
+  source_security_group_id = local.backend_alb_security_group_id
+  from_port = 8080
+  protocol = "tcp"
+  to_port = 8080
+  
+}
