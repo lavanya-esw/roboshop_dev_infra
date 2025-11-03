@@ -2,7 +2,7 @@ resource "aws_lb" "backend_alb" {
     name = "${var.project}-${var.environment}-backend-alb"
     internal = true
     load_balancer_type = "application"
-    security_groups = [local.security_groups]
+    security_groups = [local.security_group]
     subnets = local.subnets
     enable_deletion_protection = true
 
