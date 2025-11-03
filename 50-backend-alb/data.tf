@@ -9,3 +9,7 @@ data "aws_ssm_parameter" "backend_alb_sg-id"{
 data "aws_ssm_parameter" "private_subnet_ids"{
     name = "/${var.project}/${var.environment}/private_subnet_ids"
 }
+
+data "aws_route53_zone" "zone_id" {
+  name = "awsdevops.fun" # Note the trailing dot for the FQDN
+}
