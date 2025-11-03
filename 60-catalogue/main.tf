@@ -119,7 +119,7 @@ resource "aws_autoscaling_group" "catalogue" {
     health_check_type = "ELB"
     desired_capacity = 1
     target_group_arns = [aws_lb_target_group.catalogue.arn]
-    vpc_zone_identifier = [local.subnet_ids]
+    vpc_zone_identifier = local.subnet_ids
     launch_template {
       id = aws_launch_template.catalogue.id
       version = aws_launch_template.catalogue.latest_version
