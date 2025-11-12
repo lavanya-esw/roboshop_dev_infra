@@ -9,5 +9,6 @@ locals {
   mysql_security_group_id = data.aws_ssm_parameter.mysql_sg-id.value
   catalogue_security_group_id = data.aws_ssm_parameter.catalogue_sg-id.value
   backend_alb_security_group_id = data.aws_ssm_parameter.backend-alb_sg-id.value
+  frontend_alb_sg_id = data.aws_ssm_parameter.frontend-alb_sg-id.value
 
 }
