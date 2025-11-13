@@ -1,4 +1,4 @@
-variable "component" {
+/* variable "component" {
     default = catalogue
   
 }
@@ -6,7 +6,7 @@ variable "component" {
 variable "rule_priority" {
     default = 10
   
-}
+} */
 
 variable "components" {
     default = {
