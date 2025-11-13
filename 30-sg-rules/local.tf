@@ -10,5 +10,9 @@ locals {
   catalogue_security_group_id = data.aws_ssm_parameter.catalogue_sg-id.value
   backend_alb_security_group_id = data.aws_ssm_parameter.backend-alb_sg-id.value
   frontend_alb_sg_id = data.aws_ssm_parameter.frontend-alb_sg-id.value
+  user_security_group_id = data.aws_ssm_parameter.user_sg-id.value
+  cart_security_group_id = data.aws_ssm_parameter.cart_sg-id.value
+  shipping_security_group_id = data.aws_ssm_parameter.shipping_sg-id.value
+  payment_security_group_id = data.aws_ssm_parameter.payment_sg-id.value
 
 }

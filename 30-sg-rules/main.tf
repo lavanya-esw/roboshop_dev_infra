@@ -114,3 +114,39 @@ resource "aws_security_group_rule" "frontend_alb_public" {
   protocol          = "tcp"
   to_port           = 443
 }
+
+resource "aws_security_group_rule" "user-bastion" {
+  type = "ingress"
+  security_group_id = local.user_security_group_id
+  source_security_group_id = local.bastion_sg_id
+  from_port = 22
+  protocol = "tcp"
+  to_port = 22
+}
+
+resource "aws_security_group_rule" "cart-bastion" {
+  type = "ingress"
+  security_group_id = local.cart_security_group_id
+  source_security_group_id = local.bastion_sg_id
+  from_port = 22
+  protocol = "tcp"
+  to_port = 22
+}
+
+resource "aws_security_group_rule" "shipping-bastion" {
+  type = "ingress"
+  security_group_id = local.shipping_security_group_id
+  source_security_group_id = local.bastion_sg_id
+  from_port = 22
+  protocol = "tcp"
+  to_port = 22
+}
+
+resource "aws_security_group_rule" "payment-bastion" {
+  type = "ingress"
+  security_group_id = local.payment_security_group_id
+  source_security_group_id = local.bastion_sg_id
+  from_port = 22
+  protocol = "tcp"
+  to_port = 22
+}
