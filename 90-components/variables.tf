@@ -19,7 +19,7 @@ variable "components" {
         }
 
         cart = {
-            rule_priority = 20
+            rule_priority = 30
         }
     }
   
