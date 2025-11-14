@@ -10,9 +10,9 @@ variable "rule_priority" {
 
 variable "components" {
     default = {
-        catalogue = {
+/*         catalogue = {
             rule_priority = 10
-        }
+        } */
 
         user = {
             rule_priority = 20
