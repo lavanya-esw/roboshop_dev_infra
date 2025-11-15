@@ -282,14 +282,23 @@ resource "aws_security_group_rule" "frontend_frontend_alb" {
   to_port           = 80
 }
 
-##### Frontend ALB SG RUles #####
-resource "aws_security_group_rule" "frontend_alb_public" {
+resource "aws_security_group_rule" "backend_alb_frontend" {
   type              = "ingress"
-  security_group_id = local.frontend_alb_sg_id
-  cidr_blocks = ["0.0.0.0/0"]
-  from_port         = 443
+  security_group_id = local.backend_alb_security_group_id
+  source_security_group_id = local.frontend_sg_id
+  from_port         = 80
   protocol          = "tcp"
-  to_port           = 443
+  to_port           = 80
 }
+
+resource "aws_security_group_rule" "payment_shipping" {
+  type              = "ingress"
+  security_group_id = local.payment_security_group_id
+  source_security_group_id = local.shipping_security_group_id
+  from_port         = 8080
+  protocol          = "tcp"
+  to_port           = 8080
+}
+
 
 

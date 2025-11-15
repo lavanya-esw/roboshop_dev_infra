@@ -14,6 +14,6 @@ locals {
   cart_security_group_id = data.aws_ssm_parameter.cart_sg-id.value
   shipping_security_group_id = data.aws_ssm_parameter.shipping_sg-id.value
   payment_security_group_id = data.aws_ssm_parameter.payment_sg-id.value
-  frontend_sg_id = data.aws_ssm_parameter.frontend_sg-id
+  frontend_sg_id = data.aws_ssm_parameter.frontend_sg-id.value
 
 }
