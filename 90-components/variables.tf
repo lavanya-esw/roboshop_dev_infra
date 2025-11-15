@@ -18,9 +18,9 @@ variable "components" {
             rule_priority = 20
         }
 
-        cart = {
+/*         cart = {
             rule_priority = 30
-        }
+        } */
     }
   
 }
