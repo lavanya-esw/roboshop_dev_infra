@@ -22,7 +22,7 @@ variable "components" {
             rule_priority = 30
         }
         shipping = {
-            rule_priority = 30
+            rule_priority = 40
         }
     }
   
