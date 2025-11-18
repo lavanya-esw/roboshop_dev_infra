@@ -16,7 +16,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
     default_cache_behavior {
       allowed_methods = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
       cached_methods = ["GET", "HEAD"]
-      target_origin_id = "${var.project}-${var.environment}-${var.domain_name}"
+      target_origin_id = "${var.project}-${var.environment}.${var.domain_name}"
       viewer_protocol_policy = "https-only"
       cache_policy_id = local.CachingDisabled
     }
@@ -25,7 +25,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
         path_pattern     = "/media/*"
         allowed_methods  = ["GET", "HEAD", "OPTIONS"]
         cached_methods   = ["GET", "HEAD", "OPTIONS"] 
-        target_origin_id = "${var.project}-${var.environment}-${var.domain_name}"
+        target_origin_id = "${var.project}-${var.environment}.${var.domain_name}"
         viewer_protocol_policy = "https-only"
         cache_policy_id = local.CachingOptimized
     }
