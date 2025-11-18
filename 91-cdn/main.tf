@@ -1,7 +1,7 @@
 resource "aws_cloudfront_distribution" "roboshop" {
     origin {
-      domain_name = "${var.project}-${var.environment}-${var.domain_name}"
-      origin_id = "${var.project}-${var.environment}-${var.domain_name}"  
+      domain_name = "${var.project}-${var.environment}.${var.domain_name}"
+      origin_id = "${var.project}-${var.environment}.${var.domain_name}"  
       custom_origin_config {
         http_port = 80
         https_port = 443
@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
         path_pattern     = "/images/*"
         allowed_methods  = ["GET", "HEAD", "OPTIONS"]
         cached_methods   = ["GET", "HEAD", "OPTIONS"] 
-        target_origin_id = "${var.project}-${var.environment}-${var.domain_name}"
+        target_origin_id = "${var.project}-${var.environment}.${var.domain_name}"
         viewer_protocol_policy = "https-only"
         cache_policy_id = local.CachingOptimized
     }
